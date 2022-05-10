@@ -54,10 +54,12 @@ with open('F.txt', 'w' , encoding='utf-8')as w:
         if sor.jazon == 'F':
             w.write(f'{"{:02d}".format(sor.eora)}:{"{:02d}".format(sor.eperc)}-{"{:02d}".format(sor.vora)}:{"{:02d}".format(sor.vperc)} : {sor.nev}\n')
 #10
-jelek = set([sor.jazon for sor in lista])
-for i in jelek:
-    szamlalo = 0
-    for sor in lista:
-        if sor.jazon == i:
-            szamlalo += 1
-    print(f'{i} - {szamlalo}')
+
+szotar = {}
+for i in lista:
+    szotar[i.jazon]=szotar.get(i.jazon,0)+1
+
+szotar_items = szotar.items()
+rendezett = sorted(szotar_items)
+for i in rendezett:
+    print(f'{i[0]} - {i[1]}')
